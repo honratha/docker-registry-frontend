@@ -52,10 +52,6 @@ angular
     $resourceProvider.defaults.stripTrailingSlashes = false;
 
     $routeProvider.
-      when('/home', {
-        templateUrl: 'home.html',
-        controller: 'HomeController',
-      }).
       when('/repositories/:reposPerPage?/:lastNamespace?/:lastRepository?', {
         templateUrl: 'repository/repository-list.html',
         controller: 'RepositoryListController'
@@ -84,6 +80,6 @@ angular
         controller: 'CreateTagController',
       }).
       otherwise({
-        redirectTo: '/home'
+        redirectTo: '/repositories'
       });
   }]);

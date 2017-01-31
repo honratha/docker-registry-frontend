@@ -1,4 +1,4 @@
 {
-  "host": "path-to-your-registry",
+  "host": "localhost",
   "port": 80
 }

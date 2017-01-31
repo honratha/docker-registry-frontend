@@ -1,0 +1,14 @@
+frontend:
+  build: . 
+  links:
+    - registry:registry
+  ports:
+    - "8888:80"
+  environment: 
+    - ENV_MODE_BROWSE_ONLY=true
+    - ENV_REGISTRY_PROXY_FQDN=localhost
+    - ENV_REGISTRY_PROXY_PORT=5000
+registry:
+  image: registry:2.3.1
+  ports:
+    - "5000:5000"
