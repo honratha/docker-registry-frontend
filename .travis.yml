@@ -1,7 +1,4 @@
-language: node_js
-node_js:
-  - '4.4.7'
-
+language: C
 sudo: required
 services:
 - docker
@@ -10,7 +7,7 @@ addons:
   ssh_known_hosts: 46.101.222.96
 
 env:
-  - DOCKER_IMAGE_NAME="r.3r1.co/3r1c/docker-registry-frontend:1.0-$TRAVIS_BUILD_NUMBER"
+  - DOCKER_IMAGE_NAME="$DOCKER_REGISTRY/3r1c/docker-registry-frontend:1.0-$TRAVIS_BUILD_NUMBER"
 
 script:
   - make compile
