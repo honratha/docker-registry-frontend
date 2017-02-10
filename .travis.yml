@@ -4,7 +4,7 @@ services:
 - docker
 
 addons:
-  ssh_known_hosts: 46.101.222.96
+  ssh_known_hosts: $DEPLOYMENT_TARGET
 
 env:
   - DOCKER_IMAGE_NAME="$DOCKER_REGISTRY/3r1c/docker-registry-frontend:1.0-$TRAVIS_BUILD_NUMBER"
@@ -13,7 +13,7 @@ script:
   - make compile
 
 after_success:
-- docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" r.3r1.co
+- docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" $DOCKER_REGISTRY
 - docker build -t $DOCKER_IMAGE_NAME .
 - docker push $DOCKER_IMAGE_NAME
 
@@ -25,4 +25,4 @@ after_success:
 
 #deploy:
 #  - provider: script
-#    script: ssh core@46.101.222.96 'docker pull $DOCKER_IMAGE_NAME && docker service update --image $DOCKER_IMAGE_NAME registry'
+#    script: ssh core@$DEPLOYMENT_TARGET 'docker pull $DOCKER_IMAGE_NAME && docker service update --image $DOCKER_IMAGE_NAME registry'
